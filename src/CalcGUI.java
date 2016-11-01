@@ -9,7 +9,7 @@
  *JTextField does not take up a full row at top.
  *Cannot handle negative number inputs, throws Error. Does allow negative output though
  *Keyboard input appears twice momentarily
- 
+ *
  *Features to be added: 
  *Ans button to recall whatever the last answer was so it can be used as more than just the first value
  */
@@ -160,7 +160,12 @@ public class CalcGUI extends JFrame implements ActionListener, KeyListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		String source = ((AbstractButton) e.getSource()).getText();
+		String source = "";
+		try {
+			source = ((AbstractButton) e.getSource()).getText();
+		} catch (ClassCastException e1) {
+			return;
+		}
 		System.out.println(source);
 		//If previous calculation was an error, clears it automatically upon trying to do a new expression.
 		if (expression.equals("Error")) {
@@ -195,10 +200,7 @@ public class CalcGUI extends JFrame implements ActionListener, KeyListener {
 			//Functions as if 'Enter' was pressed on GUI
 			if (source == KeyEvent.VK_ENTER) {
 				System.out.println("Return");
-				try {
-					expression = ShuntYard.shunt(expression);
-				} catch (ClassCastException e2) {
-				}
+				expression = ShuntYard.shunt(expression);
 			//Functions as if 'Clear' was pressed on GUI
 			} else if (source == KeyEvent.VK_DELETE || source == KeyEvent.VK_BACK_SPACE) {
 				System.out.println("Clear");
@@ -206,6 +208,7 @@ public class CalcGUI extends JFrame implements ActionListener, KeyListener {
 			//Puts the key value onto the expression
 			} else {
 				expression += source.toString();
+				user.setText(expression);
 			}
 		} 
 		//Displays new expression
