@@ -9,6 +9,9 @@
  *JTextField does not take up a full row at top.
  *Cannot handle negative number inputs, throws Error. Does allow negative output though
  *Keyboard input appears twice momentarily
+ 
+ *Features to be added: 
+ *Ans button to recall whatever the last answer was so it can be used as more than just the first value
  */
 
 import java.awt.GridLayout;
