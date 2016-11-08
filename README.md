@@ -7,7 +7,7 @@ This value can then immediately be used again as the first value in the next exp
 
 Currently known issues:
 JTextField does not take up a full row at top.
-Cannot handle negative number inputs, throws Error. Does allow negative output though
+Cannot handle negative number inputs, throws Error; does allow negative output though.
 Keyboard input appears twice momentarily
 
 Features to be added:
